@@ -98,6 +98,15 @@ NeoBundle 'Shougo/unite.vim', {'lazy': 1,
              \                    'UniteWithInput'],  
              \ }}                     
 
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+
 " if_luaが使用可能であればneocompleteを読み込む
 if has('lua')
 	NeoBundle 'Shougo/neocomplete', {
@@ -168,3 +177,6 @@ set shiftwidth=4
 
 " tagsジャンプの時に複数あるときは一覧表示
 nnoremap <C-]> g<C-]> 
+
+
+
