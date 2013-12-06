@@ -124,6 +124,7 @@ else
                 \ }}
 endif
 
+NeoBundle 'git@github.com:Shougo/neosnippet'
 NeoBundle 'git@github.com:Shougo/vimfiler.vim.git'
 NeoBundle 'git@github.com:vim-perl/vim-perl'
 NeoBundle 'git@github.com:hotchpotch/perldoc-vim'
