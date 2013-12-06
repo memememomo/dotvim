@@ -36,6 +36,9 @@ set ignorecase
 " コマンドラインモードでの保管表示形式を設定
 set wildmenu wildmode=list:full
 
+" 文字コード設定
+set fileformat=unix
+set fileencoding=utf-8
 
 " タブキーで15文字分右へカーソルを移動
 nmap <silent> <Tab> 15<Right>
@@ -109,17 +112,17 @@ nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 
 " if_luaが使用可能であればneocompleteを読み込む
 if has('lua')
-	NeoBundle 'Shougo/neocomplete', {
-				\ 'autoload': {
-	                        \     'insert': 1,
-				\ }}
+    NeoBundle 'Shougo/neocomplete', {
+                \ 'autoload': {
+                            \     'insert': 1,
+                \ }}
 else
-	NeoBundle 'Shougo/neocompletecache', {'lazy': 1,
-				\ 'autoload': {
-				\     'insert': 1,
-				\ }}
+    NeoBundle 'Shougo/neocompletecache', {
+         \ 'lazy': 1,
+         \ 'autoload': {
+         \     'insert': 1,
+                \ }}
 endif
-
 
 NeoBundle 'git@github.com:Shougo/vimfiler.vim.git'
 NeoBundle 'git@github.com:vim-perl/vim-perl'
@@ -153,9 +156,9 @@ let g:neocomplcache_ctags_arguments_list = {
 let g:neocomplcache_snippets_dir = "~/.vim/snippets"
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
-          \ 'default'    : '',
-              \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
-                  \ }
+  \ 'default'    : '',
+  \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
+  \ }
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
@@ -170,7 +173,7 @@ smap <C-k> <Plug>(neocomplcache_snippets_expand)
 autocmd BufNewFile,BufRead *.psgi   set filetype=perl
 autocmd BufNewFile,BufRead *.t      set filetype=perl
 
-set cindent
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
