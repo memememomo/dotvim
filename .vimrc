@@ -13,8 +13,9 @@ set mouse=
 " シンタックスハイライト機能
 syntax on
 
-" 検索時のハイライトが有効にならないようにする
-set nohlsearch
+" 検索時のハイライトを無効化にする
+set hlsearch
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " バックグラウンドが黒の時の色設定
 highlight StatusLine ctermfg=black ctermbg=grey
@@ -133,40 +134,38 @@ NeoBundle 'git@github.com:hotchpotch/perldoc-vim'
 NeoBundle 'git@github.com:szw/vim-tags'
 
 
-""" http://qiita.com/Cside_/items/3d186671b361672f1e51
-
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
+" Use neocomplete.
+let g:neocomplete_enable_at_startup = 1
 " Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplete_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete_min_syntax_length = 3
+let g:neocomplete_lock_buffer_name_pattern = '\*ku\*'
 
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete_enable_smart_case = 1
 " Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplete_enable_camel_case_completion = 1
 " Select with <TAB>
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-let g:neocomplcache_ctags_arguments_list = {
+let g:neocomplete_ctags_arguments_list = {
   \ 'perl' : '-R -h ".pm"'
   \ }
 
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
+let g:neocomplete#sources#dictionary#dictionaries = {
   \ 'default'    : '',
   \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
   \ }
 
 " Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-let g:neocomplcache_keyword_patterns = {}
+if !exists('g:neocomplete_keyword_patterns')
+let g:neocomplete_keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplete_keyword_patterns['default'] = '\h\w*'
 
 
 " Plugin key-mappings.
