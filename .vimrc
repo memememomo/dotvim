@@ -116,6 +116,7 @@ if has('lua')
                 \ 'autoload': {
                             \     'insert': 1,
                 \ }}
+    let g:neocomplete#enable_at_startup = 1
 else
     NeoBundle 'Shougo/neocompletecache', {
          \ 'lazy': 1,
@@ -123,6 +124,7 @@ else
          \     'insert': 1,
                 \ }}
 endif
+
 
 NeoBundle 'git@github.com:Shougo/neosnippet'
 NeoBundle 'git@github.com:Shougo/vimfiler.vim.git'
@@ -154,7 +156,6 @@ let g:neocomplcache_ctags_arguments_list = {
   \ 'perl' : '-R -h ".pm"'
   \ }
 
-let g:neocomplcache_snippets_dir = "~/.vim/snippets"
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
   \ 'default'    : '',
@@ -167,10 +168,34 @@ let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-" for snippets
-imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" for snippets
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+
+" Perl file
 autocmd BufNewFile,BufRead *.psgi   set filetype=perl
 autocmd BufNewFile,BufRead *.t      set filetype=perl
 
