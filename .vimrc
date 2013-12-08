@@ -199,10 +199,16 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 autocmd BufNewFile,BufRead *.psgi   set filetype=perl
 autocmd BufNewFile,BufRead *.t      set filetype=perl
 
+" Default Indent
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
+" Lang Indent
+augroup vimrc
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+augroup END
 
 " tagsジャンプの時に複数あるときは一覧表示
 nnoremap <C-]> g<C-]> 
