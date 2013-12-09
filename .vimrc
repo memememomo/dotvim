@@ -213,5 +213,8 @@ augroup END
 " tagsジャンプの時に複数あるときは一覧表示
 nnoremap <C-]> g<C-]> 
 
+" スワップファイルの出力先を変更
+set directory=~/.vim/tmp
 
-
+" バックアップファイルの出力先を変更
+set backupdir=~/.vim/tmp
