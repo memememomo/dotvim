@@ -199,6 +199,14 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 autocmd BufNewFile,BufRead *.psgi   set filetype=perl
 autocmd BufNewFile,BufRead *.t      set filetype=perl
 
+" HTML file
+autocmd BufNewFile,BufRead *.html.tt set filetype=html
+autocmd BufNewFile,BufRead *.tmpl set filetype=html
+
+" 不可視文字を表示
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
 " Default Indent
 set expandtab
 set tabstop=4
@@ -208,6 +216,7 @@ set shiftwidth=4
 " Lang Indent
 augroup vimrc
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 
 " tagsジャンプの時に複数あるときは一覧表示
