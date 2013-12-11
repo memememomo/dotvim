@@ -112,21 +112,12 @@ nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,ud :<C-u>Unite file<CR>
 
-" if_luaが使用可能であればneocompleteを読み込む
-if has('lua')
-    NeoBundle 'Shougo/neocomplete', {
-                \ 'autoload': {
-                            \     'insert': 1,
-                \ }}
-    let g:neocomplete#enable_at_startup = 1
-else
-    NeoBundle 'Shougo/neocompletecache', {
-         \ 'lazy': 1,
-         \ 'autoload': {
-         \     'insert': 1,
-                \ }}
-endif
-
+" Neocomplete
+NeoBundle 'Shougo/neocomplete', {
+            \ 'autoload': {
+                        \     'insert': 1,
+            \ }}
+let g:neocomplete#enable_at_startup = 1
 
 NeoBundle 'git@github.com:Shougo/neosnippet'
 NeoBundle 'git@github.com:Shougo/vimfiler.vim.git'
@@ -203,9 +194,9 @@ autocmd BufNewFile,BufRead *.t      set filetype=perl
 autocmd BufNewFile,BufRead *.html.tt set filetype=html
 autocmd BufNewFile,BufRead *.tmpl set filetype=html
 
-" 不可視文字を表示
+" 不可視文字を表示(コピペするとこれらの記号が含まれてしまう...)
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 " Default Indent
 set expandtab
