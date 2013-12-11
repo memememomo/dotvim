@@ -124,7 +124,7 @@ NeoBundle 'git@github.com:Shougo/vimfiler.vim.git'
 NeoBundle 'git@github.com:vim-perl/vim-perl'
 NeoBundle 'git@github.com:hotchpotch/perldoc-vim'
 NeoBundle 'git@github.com:szw/vim-tags'
-
+NeoBundle 'git@github.com:thinca/vim-localrc'
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
