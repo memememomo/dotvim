@@ -43,6 +43,7 @@ NeoBundleのインストール時にgithubにアクセスするため。
 ## .vimrcをclone
 
     git clone git@github.com:memememomo/dotvim.git
+    cd dotvim
     ln -s `pwd`/dotvim/.vimrc ~/.vimrc
     ln -s `pwd`/dotvim/dict ~/.vim/dict
 
@@ -50,6 +51,7 @@ NeoBundleのインストール時にgithubにアクセスするため。
 ## スニペットファイルをダウンロード
 
     git clone git@github.com:memememomo/vim-snippets.git
+    cd vim-snippets
     ln -s `pwd`/vim-snippets ~/.vim/bundle/vim-snippets
 
 ## Neobundleinstallの実行
