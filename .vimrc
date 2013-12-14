@@ -121,10 +121,19 @@ let g:neocomplete#enable_at_startup = 1
 
 NeoBundle 'git@github.com:Shougo/neosnippet'
 NeoBundle 'git@github.com:Shougo/vimfiler.vim.git'
+NeoBundle 'git@github.com:thinca/vim-quickrun.git'
 NeoBundle 'git@github.com:vim-perl/vim-perl'
 NeoBundle 'git@github.com:hotchpotch/perldoc-vim'
 NeoBundle 'git@github.com:szw/vim-tags'
 NeoBundle 'git@github.com:thinca/vim-localrc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -189,6 +198,24 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " Perl file
 autocmd BufNewFile,BufRead *.psgi   set filetype=perl
 autocmd BufNewFile,BufRead *.t      set filetype=perl
+
+" Quickrun
+augroup QuickRunUnitTest
+  autocmd!
+  autocmd BufWinEnter,BufNewFile *.t set filetype=perl.unit
+augroup END
+
+let g:quickrun_config = {}
+let g:quickrun_config = {
+\   "_" : {
+\       "outputter" : "multi:buffer:quickfix",
+\       "outputter/buffer/split": ":botright 8sp",
+\       "runner" : "vimproc",
+\       "runner/vimproc/updatetime" : 60
+\   },
+\   "perl.unit": { 'command': 'prove' }
+\}
+
 
 " HTML file
 autocmd BufNewFile,BufRead *.html.tt set filetype=html
