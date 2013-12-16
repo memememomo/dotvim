@@ -52,7 +52,7 @@ NeoBundleのインストール時にgithubにアクセスするため。
 
     git clone git@github.com:memememomo/vim-snippets.git
     cd vim-snippets
-    ln -s `pwd`/vim-snippets ~/.vim/bundle/vim-snippets
+    ln -s `pwd` ~/.vim/bundle/vim-snippets
 
 ## Neobundleinstallの実行
 
