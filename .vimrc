@@ -134,6 +134,7 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+NeoBundle 'git@github.com:tpope/vim-endwise.git'
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
