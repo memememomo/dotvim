@@ -44,8 +44,8 @@ NeoBundleのインストール時にgithubにアクセスするため。
 
     git clone git@github.com:memememomo/dotvim.git
     cd dotvim
-    ln -s `pwd`/dotvim/.vimrc ~/.vimrc
-    ln -s `pwd`/dotvim/dict ~/.vim/dict
+    ln -s `pwd`/.vimrc ~/.vimrc
+    ln -s `pwd`/dict ~/.vim/dict
 
 
 ## スニペットファイルをダウンロード
