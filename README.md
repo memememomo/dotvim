@@ -6,7 +6,7 @@ if_luaを使用するためにLuaをインストールする。
 
     tar xvzf http://www.lua.org/ftp/lua-5.2.3.tar.gz
     cd lua-5.2.3
-    make linux
+    make linux MYLIBS=-ltermcap
     sudo make install
 
 Vimのインストール時にlua.hを指定するので、コピーする。
