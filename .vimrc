@@ -203,6 +203,7 @@ autocmd BufNewFile,BufRead *.t      set filetype=perl
 augroup QuickRunUnitTest
   autocmd!
   autocmd BufWinEnter,BufNewFile *.t set filetype=perl.unit
+  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
 
 let g:quickrun_config = {}
@@ -213,7 +214,8 @@ let g:quickrun_config = {
 \       "runner" : "vimproc",
 \       "runner/vimproc/updatetime" : 60
 \   },
-\   "perl.unit": { 'command': 'prove' }
+\   "perl.unit": { 'command': 'prove' },
+\   "ruby.rspec": { 'command': 'rspec' }
 \}
 
 
