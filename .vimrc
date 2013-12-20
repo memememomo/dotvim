@@ -120,6 +120,7 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+NeoBundle 'kakkyz81/evervim'
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
