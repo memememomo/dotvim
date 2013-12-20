@@ -18,7 +18,7 @@ set hlsearch
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " バックグラウンドが黒の時の色設定
-highlight StatusLine ctermfg=black ctermbg=grey
+highlight StatusLine ctermfg=gray ctermbg=darkgray
 highlight CursorLine ctermfg=none ctermbg=darkgray cterm=none
 highlight MatchParen ctermfg=none ctermbg=darkgray
 highlight Comment ctermfg=DarkGreen ctermbg=NONE
@@ -40,20 +40,6 @@ set wildmenu wildmode=list:full
 " 文字コード設定
 set fileformat=unix
 set fileencoding=utf-8
-
-" タブキーで15文字分右へカーソルを移動
-nmap <silent> <Tab> 15<Right>
-vmap <silent> <Tab> <C-o>15<Right>
-
-" シフト+タブキーで15文字分左へカーソルを移動
-nmap <silent> <S-Tab> 15<Left>
-vmap <silent> <S-Tab> <C-o>15<Left>
-
-" C-nで次のファイルへ編集対象を切り替える
-nmap <silent> <C-n> :update<CR>:bn<CR>
-imap <silent> <C-n> <ESC>:update<CR>:bn<CR>
-vmap <silent> <C-n> <ESC>:update<CR>:bn<CR>
-cmap <silent> <C-n> <ESC>:update<CR>:bn<CR>
 
 " vim起動時のみruntimepathにneobundle.vimを追加
 if has('vim_starting')
@@ -119,13 +105,13 @@ NeoBundle 'Shougo/neocomplete', {
             \ }}
 let g:neocomplete#enable_at_startup = 1
 
-NeoBundle 'git@github.com:Shougo/neosnippet'
-NeoBundle 'git@github.com:Shougo/vimfiler.vim.git'
-NeoBundle 'git@github.com:thinca/vim-quickrun.git'
-NeoBundle 'git@github.com:vim-perl/vim-perl'
-NeoBundle 'git@github.com:hotchpotch/perldoc-vim'
-NeoBundle 'git@github.com:szw/vim-tags'
-NeoBundle 'git@github.com:thinca/vim-localrc'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/vimfiler.vim.git'
+NeoBundle 'thinca/vim-quickrun.git'
+NeoBundle 'vim-perl/vim-perl'
+NeoBundle 'hotchpotch/perldoc-vim'
+NeoBundle 'szw/vim-tags'
+NeoBundle 'thinca/vim-localrc'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
@@ -138,7 +124,7 @@ NeoBundle 'Shougo/vimproc', {
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
-let g:neocomplete_enable_at_startup = 1
+let g:neocomplete_enable_at_startup = 2
 " Use underbar completion.
 let g:neocomplete_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
@@ -245,3 +231,35 @@ set directory=~/.vim/tmp
 
 " バックアップファイルの出力先を変更
 set backupdir=~/.vim/tmp
+
+
+" 挿入モード時、ステータスラインの色を変更
+let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
+
+if has('syntax')
+  augroup InsertHook
+    autocmd!
+    autocmd InsertEnter * call s:StatusLine('Enter')
+    autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
+endif
+
+let s:slhlcmd = ''
+function! s:StatusLine(mode)
+  if a:mode == 'Enter'
+    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    silent exec g:hi_insert
+  else
+    highlight clear StatusLine
+    silent exec s:slhlcmd
+  endif
+endfunction
+
+function! s:GetHighlight(hi)
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
+endfunction
