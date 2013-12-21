@@ -4,7 +4,8 @@
 
 if_luaを使用するためにLuaをインストールする。
 
-    tar xvzf http://www.lua.org/ftp/lua-5.2.3.tar.gz
+    wget http://www.lua.org/ftp/lua-5.2.3.tar.gz
+    tar xvzf lua-5.2.3.tar.gz
     cd lua-5.2.3
     make linux MYLIBS=-ltermcap
     sudo make install
@@ -26,7 +27,7 @@ if_pythonを使用するためにPythonをインストールする。
 
 ## Markdownのインストール
 
-    http://peak.telecommunity.com/dist/ez_setup.py
+    wget http://peak.telecommunity.com/dist/ez_setup.py
     sudo python ez_setup.py
     sudo python ez_setup.py -U setuptools
     wget http://pypi.python.org/packages/source/M/Markdown/Markdown-2.3.tar.gz
@@ -49,7 +50,7 @@ if_pythonを使用するためにPythonをインストールする。
 Luaの指定を含めてコンパイルをする。
 
     tar xvjf vim-7.4.tar.bz2
-    cd vim-7.4
+    cd vim74
     ./configure --enable-luainterp  --with-features=huge --enable-multibyte --enable-fail-if-missing --enable-pythoninterp
     make
     sudo make install
