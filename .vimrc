@@ -230,6 +230,10 @@ nnoremap <C-]> g<C-]>
 " tagsジャンプ前の位置に戻る
 nnoremap <C-[> :pop<CR>
 
+" コマンド履歴を辿るキーマップ
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
 " スワップファイルの出力先を変更
 set directory=~/.vim/tmp
 
