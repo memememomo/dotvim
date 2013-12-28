@@ -89,3 +89,12 @@ NeoBundleのインストール時にgithubにアクセスするため。
 ## Neobundleinstallの実行
 
 vimを立ち上げて「NeoBundleInstall」を実行する
+
+## 日本語HELPを導入
+
+    wget https://github.com/vim-jp/vimdoc-ja/archive/master.tar.gz
+    tar xvzf master.tar.gz
+    mv -r vimdoc-ja-master/syntax/ ~/.vim/
+    mv -r vimdoc-ja-master/doc/ ~/.vim/
+    
+vimを立ち上げて「:helptags $HOME/.vim/doc」を実行する。
