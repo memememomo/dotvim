@@ -271,3 +271,6 @@ function! s:GetHighlight(hi)
   let hl = substitute(hl, 'xxx', '', '')
   return hl
 endfunction
+
+" 対となるキーワード間の移動(%の拡張)
+runtime macros/matchit.vim
