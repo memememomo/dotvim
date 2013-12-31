@@ -229,6 +229,13 @@ augroup END
 " tagsジャンプの時に複数あるときは一覧表示
 nnoremap <C-]> g<C-]> 
 
+" tagsジャンプ前の位置に戻る
+nnoremap <C-[> :pop<CR>
+
+" コマンド履歴を辿るキーマップ
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
 " スワップファイルの出力先を変更
 set directory=~/.vim/tmp
 
@@ -266,3 +273,6 @@ function! s:GetHighlight(hi)
   let hl = substitute(hl, 'xxx', '', '')
   return hl
 endfunction
+
+" 対となるキーワード間の移動(%の拡張)
+runtime macros/matchit.vim
