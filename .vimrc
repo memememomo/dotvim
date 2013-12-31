@@ -121,6 +121,8 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'kakkyz81/evervim'
+NeoBundle 'kana/vim-filetype-haskell'
+
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
