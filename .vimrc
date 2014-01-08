@@ -288,3 +288,6 @@ endfunction
 
 " 対となるキーワード間の移動(%の拡張)
 runtime macros/matchit.vim
+
+" ペーストトグル
+set pastetoggle=<C-E>
