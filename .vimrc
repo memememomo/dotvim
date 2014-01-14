@@ -121,6 +121,17 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'kakkyz81/evervim'
+NeoBundle 'kana/vim-filetype-haskell'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'vim-scripts/vim-javascript'
+NeoBundle 'taichouchou2/html5.vim'
+
+" Coffee Script
+au BufRead,BufNewFile,BufReadPre *.coffee    set filetype=coffee
+autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -146,7 +157,9 @@ let g:neocomplete_ctags_arguments_list = {
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
   \ 'default'    : '',
-  \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
+  \ 'perl'       : $HOME . '/.vim/dict/perl.dict',
+  \ 'javascript'       : $HOME . '/.vim/dict/javascript.dict',
+  \ 'coffee'       : $HOME . '/.vim/dict/javascript.dict'
   \ }
 
 " Define keyword.
@@ -202,7 +215,8 @@ let g:quickrun_config = {
 \       "runner" : "vimproc",
 \       "runner/vimproc/updatetime" : 60
 \   },
-\   "perl.unit": { 'command': 'prove' }
+\   "perl.unit": { 'command': 'prove' },
+\   "coffee": { 'command': 'coffee', 'exec':['%c -cbp %s']}
 \}
 
 
@@ -276,3 +290,6 @@ endfunction
 
 " 対となるキーワード間の移動(%の拡張)
 runtime macros/matchit.vim
+
+" ペーストトグル
+set pastetoggle=<C-E>
