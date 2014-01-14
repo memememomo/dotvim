@@ -28,7 +28,7 @@ highlight Directory ctermfg=DarkGreen ctermbg=NONE
 set laststatus=2
 
 " ステータスラインに長いパスでファイル名を表示する
-set statusline=%F%r%h%=
+set statusline=%F%r%h%=(%l:%c)
 
 " /の検索をインクリメンタルにする、大文字小文字を区別しない
 set incsearch
@@ -108,7 +108,7 @@ let g:neocomplete#enable_at_startup = 1
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimfiler.vim.git'
 NeoBundle 'thinca/vim-quickrun.git'
-NeoBundle 'vim-perl/vim-perl'
+NeoBundle 'memememomo/vim-perl'
 NeoBundle 'hotchpotch/perldoc-vim'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'thinca/vim-localrc'
@@ -155,6 +155,8 @@ let g:neocomplete_keyword_patterns = {}
 endif
 let g:neocomplete_keyword_patterns['default'] = '\h\w*'
 
+" vim-perl
+let g:perl_braceclass_max_indent_level = 1
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
