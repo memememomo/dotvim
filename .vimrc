@@ -1,4 +1,4 @@
-" vi股間モードをオフ
+" vi互換モードをオフ
 set nocompatible
 
 " バックスペース設定
@@ -18,7 +18,7 @@ set hlsearch
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " バックグラウンドが黒の時の色設定
-highlight StatusLine ctermfg=black ctermbg=grey
+highlight StatusLine ctermfg=gray ctermbg=darkgray
 highlight CursorLine ctermfg=none ctermbg=darkgray cterm=none
 highlight MatchParen ctermfg=none ctermbg=darkgray
 highlight Comment ctermfg=DarkGreen ctermbg=NONE
@@ -28,7 +28,7 @@ highlight Directory ctermfg=DarkGreen ctermbg=NONE
 set laststatus=2
 
 " ステータスラインに長いパスでファイル名を表示する
-set statusline=%F%r%h%=
+set statusline=%F%r%h%=(%l:%c)
 
 " /の検索をインクリメンタルにする、大文字小文字を区別しない
 set incsearch
@@ -40,20 +40,6 @@ set wildmenu wildmode=list:full
 " 文字コード設定
 set fileformat=unix
 set fileencoding=utf-8
-
-" タブキーで15文字分右へカーソルを移動
-nmap <silent> <Tab> 15<Right>
-vmap <silent> <Tab> <C-o>15<Right>
-
-" シフト+タブキーで15文字分左へカーソルを移動
-nmap <silent> <S-Tab> 15<Left>
-vmap <silent> <S-Tab> <C-o>15<Left>
-
-" C-nで次のファイルへ編集対象を切り替える
-nmap <silent> <C-n> :update<CR>:bn<CR>
-imap <silent> <C-n> <ESC>:update<CR>:bn<CR>
-vmap <silent> <C-n> <ESC>:update<CR>:bn<CR>
-cmap <silent> <C-n> <ESC>:update<CR>:bn<CR>
 
 " vim起動時のみruntimepathにneobundle.vimを追加
 if has('vim_starting')
@@ -96,11 +82,11 @@ NeoBundle 'Shougo/unite.vim', {'lazy': 1,
              \ 'autoload': {
              \      'commands': [{'name': 'Unite',
              \                    'complete': 'customlist,unite#complete_source'},
-             \                    'UniteWithBufferDir',  
-             \                    'UniteWithCurrentDir',  
-             \                    'UniteWithCursorWord',  
-             \                    'UniteWithInput'],  
-             \ }}                     
+             \                    'UniteWithBufferDir',
+             \                    'UniteWithCurrentDir',
+             \                    'UniteWithCursorWord',
+             \                    'UniteWithInput'],
+             \ }}
 
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
@@ -119,13 +105,13 @@ NeoBundle 'Shougo/neocomplete', {
             \ }}
 let g:neocomplete#enable_at_startup = 1
 
-NeoBundle 'git@github.com:Shougo/neosnippet'
-NeoBundle 'git@github.com:Shougo/vimfiler.vim.git'
-NeoBundle 'git@github.com:thinca/vim-quickrun.git'
-NeoBundle 'git@github.com:vim-perl/vim-perl'
-NeoBundle 'git@github.com:hotchpotch/perldoc-vim'
-NeoBundle 'git@github.com:szw/vim-tags'
-NeoBundle 'git@github.com:thinca/vim-localrc'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/vimfiler.vim.git'
+NeoBundle 'thinca/vim-quickrun.git'
+NeoBundle 'memememomo/vim-perl'
+NeoBundle 'hotchpotch/perldoc-vim'
+NeoBundle 'szw/vim-tags'
+NeoBundle 'thinca/vim-localrc'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
@@ -134,12 +120,24 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-NeoBundle 'git@github.com:tpope/vim-endwise.git'
+NeoBundle 'tpope/vim-endwise.git'
+NeoBundle 'kakkyz81/evervim'
+NeoBundle 'kana/vim-filetype-haskell'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'vim-scripts/vim-javascript'
+NeoBundle 'taichouchou2/html5.vim'
+
+" Coffee Script
+autocmd BufRead,BufNewFile,BufReadPre *.coffee    set filetype=coffee
+autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
-let g:neocomplete_enable_at_startup = 1
+let g:neocomplete_enable_at_startup = 2
 " Use underbar completion.
 let g:neocomplete_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
@@ -160,7 +158,9 @@ let g:neocomplete_ctags_arguments_list = {
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
   \ 'default'    : '',
-  \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
+  \ 'perl'       : $HOME . '/.vim/dict/perl.dict',
+  \ 'javascript'       : $HOME . '/.vim/dict/javascript.dict',
+  \ 'coffee'       : $HOME . '/.vim/dict/javascript.dict'
   \ }
 
 " Define keyword.
@@ -169,6 +169,8 @@ let g:neocomplete_keyword_patterns = {}
 endif
 let g:neocomplete_keyword_patterns['default'] = '\h\w*'
 
+" vim-perl
+let g:perl_braceclass_max_indent_level = 1
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -216,7 +218,8 @@ let g:quickrun_config = {
 \       "runner/vimproc/updatetime" : 60
 \   },
 \   "perl.unit": { 'command': 'prove' },
-\   "ruby.rspec": { 'command': 'rspec' }
+\   "ruby.rspec": { 'command': 'rspec' },
+\   "coffee": { 'command': 'coffee', 'exec':['%c -cbp %s']}
 \}
 
 
@@ -243,8 +246,53 @@ augroup END
 " tagsジャンプの時に複数あるときは一覧表示
 nnoremap <C-]> g<C-]> 
 
+" tagsジャンプ前の位置に戻る
+nnoremap <C-[> :pop<CR>
+
+" コマンド履歴を辿るキーマップ
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
 " スワップファイルの出力先を変更
 set directory=~/.vim/tmp
 
 " バックアップファイルの出力先を変更
 set backupdir=~/.vim/tmp
+
+
+" 挿入モード時、ステータスラインの色を変更
+let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
+
+if has('syntax')
+  augroup InsertHook
+    autocmd!
+    autocmd InsertEnter * call s:StatusLine('Enter')
+    autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
+endif
+
+let s:slhlcmd = ''
+function! s:StatusLine(mode)
+  if a:mode == 'Enter'
+    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    silent exec g:hi_insert
+  else
+    highlight clear StatusLine
+    silent exec s:slhlcmd
+  endif
+endfunction
+
+function! s:GetHighlight(hi)
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
+endfunction
+
+" 対となるキーワード間の移動(%の拡張)
+runtime macros/matchit.vim
+
+" ペーストトグル
+set pastetoggle=<C-E>
