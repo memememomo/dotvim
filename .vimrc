@@ -1,4 +1,4 @@
-" vi股間モードをオフ
+" vi互換モードをオフ
 set nocompatible
 
 " バックスペース設定
@@ -86,11 +86,11 @@ NeoBundle 'Shougo/unite.vim', {'lazy': 1,
              \ 'autoload': {
              \      'commands': [{'name': 'Unite',
              \                    'complete': 'customlist,unite#complete_source'},
-             \                    'UniteWithBufferDir',  
-             \                    'UniteWithCurrentDir',  
-             \                    'UniteWithCursorWord',  
-             \                    'UniteWithInput'],  
-             \ }}                     
+             \                    'UniteWithBufferDir',
+             \                    'UniteWithCurrentDir',
+             \                    'UniteWithCursorWord',
+             \                    'UniteWithInput'],
+             \ }}
 
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
@@ -124,6 +124,7 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+NeoBundle 'tpope/vim-endwise.git'
 NeoBundle 'kakkyz81/evervim'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kchmck/vim-coffee-script'
@@ -133,7 +134,7 @@ NeoBundle 'vim-scripts/vim-javascript'
 NeoBundle 'taichouchou2/html5.vim'
 
 " Coffee Script
-au BufRead,BufNewFile,BufReadPre *.coffee    set filetype=coffee
+autocmd BufRead,BufNewFile,BufReadPre *.coffee    set filetype=coffee
 autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
@@ -209,6 +210,7 @@ autocmd BufNewFile,BufRead *.t      set filetype=perl
 augroup QuickRunUnitTest
   autocmd!
   autocmd BufWinEnter,BufNewFile *.t set filetype=perl.unit
+  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
 
 let g:quickrun_config = {}
@@ -220,6 +222,7 @@ let g:quickrun_config = {
 \       "runner/vimproc/updatetime" : 60
 \   },
 \   "perl.unit": { 'command': 'prove' },
+\   "ruby.rspec": { 'command': 'rspec' },
 \   "coffee": { 'command': 'coffee', 'exec':['%c -cbp %s']}
 \}
 
