@@ -41,6 +41,10 @@ set wildmenu wildmode=list:full
 set fileformat=unix
 set fileencoding=utf-8
 
+" カレントカーソル行をハイライト
+set cursorline
+highlight CursorLine ctermbg=Blue
+
 " vim起動時のみruntimepathにneobundle.vimを追加
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
