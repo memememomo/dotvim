@@ -55,6 +55,13 @@ Luaの指定を含めてコンパイルをする。
     make
     sudo make install
 
+Macでコンパイルエラーが出る場合は、以下を書き換える。
+
+src/os_unix.c
+
+     -       extern int sigaltstack __ARGS((const struct sigaltstack *ss, struct sigaltstack *oss));
+     +    extern int sigaltstack __ARGS((const stack_t *restrict ss, stack_t *restrict oss));
+
 ## githubの自分のアカウントに鍵認証登録を行う
 
 NeoBundleのインストール時にgithubにアクセスするため。

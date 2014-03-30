@@ -128,7 +128,9 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'tpope/vim-endwise.git'
-NeoBundle 'kakkyz81/evervim'
+if has('python')
+    NeoBundle 'kakkyz81/evervim'
+endif
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'mattn/emmet-vim'
@@ -251,10 +253,10 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 
 " tagsジャンプの時に複数あるときは一覧表示
-nnoremap <C-]> g<C-]> 
+nnoremap <C-]> g<C-]>
 
 " tagsジャンプ前の位置に戻る
-nnoremap <C-[> :pop<CR>
+nnoremap <C-[[> :pop<CR>
 
 " コマンド履歴を辿るキーマップ
 cnoremap <C-p> <Up>
