@@ -28,7 +28,7 @@ highlight Directory ctermfg=DarkGreen ctermbg=NONE
 set laststatus=2
 
 " ステータスラインに長いパスでファイル名を表示する
-set statusline=%F%r%h%=(%l:%c)
+set statusline=%F%r%h%=%{'['.(&fenc!=''?&fenc:&enc).']['.&fileformat.']'}(%l:%c)
 
 " /の検索をインクリメンタルにする、大文字小文字を区別しない
 set incsearch
@@ -37,9 +37,12 @@ set ignorecase
 " コマンドラインモードでの保管表示形式を設定
 set wildmenu wildmode=list:full
 
+" 文脈によって文字幅が異なる文字を全角文字として固定で認識
+set ambiwidth=double
+
 " 文字コード設定
 set fileformat=unix
-set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
 " カレントカーソル行をハイライト
 set cursorline
@@ -125,7 +128,9 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'tpope/vim-endwise.git'
-NeoBundle 'kakkyz81/evervim'
+if has('python')
+    NeoBundle 'kakkyz81/evervim'
+endif
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'mattn/emmet-vim'
@@ -248,7 +253,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 
 " tagsジャンプの時に複数あるときは一覧表示
-nnoremap <C-]> g<C-]> 
+nnoremap <C-]> g<C-]>
 
 " コマンド履歴を辿るキーマップ
 cnoremap <C-p> <Up>
