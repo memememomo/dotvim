@@ -250,9 +250,6 @@ augroup END
 " tagsジャンプの時に複数あるときは一覧表示
 nnoremap <C-]> g<C-]> 
 
-" tagsジャンプ前の位置に戻る
-nnoremap <C-[> :pop<CR>
-
 " コマンド履歴を辿るキーマップ
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -300,3 +297,12 @@ runtime macros/matchit.vim
 
 " ペーストトグル
 set pastetoggle=<C-E>
+
+" Goに付属のpluginとgocodeを有効にする
+if (isdirectory(expand("$GOROOT")))
+    NeoBundle 'go', {'type': 'nosync', 'base': '~/.vim/bundle'}
+    NeoBundle 'gocode', {'type': 'nosync', 'base': '~/.vim/bundle'}
+endif
+
+autocmd BufNewFile,BufRead *.go setlocal filetype=go sw=2 expandtab ts=2
+autocmd FileType go setlocal noexpandtab list tabstop=2 shiftwidth=2
