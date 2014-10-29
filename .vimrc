@@ -54,10 +54,9 @@ if has('vim_starting')
 endif
 
 " neobundle.vimの初期化
-call neobundle#rc(expand('~/.vim/bundle'))
-
-" neobundle.vimを更新するための設定
+call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
+call neobundle#end()
 
 " 読み込むプラグインを記載
 " NeoBundle 'プラグイン名'
