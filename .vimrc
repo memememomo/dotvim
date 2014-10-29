@@ -111,6 +111,7 @@ NeoBundle 'Shougo/neocomplete', {
             \ }}
 let g:neocomplete#enable_at_startup = 1
 
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimfiler.vim.git'
 NeoBundle 'thinca/vim-quickrun.git'
@@ -312,8 +313,6 @@ if (isdirectory(expand("$GOROOT")))
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
     exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
     set completeopt=menu,preview
-    NeoBundle 'go', {'type': 'nosync', 'base': '~/.vim/bundle'}
-    NeoBundle 'gocode', {'type': 'nosync', 'base': '~/.vim/bundle'}
 endif
 
 autocmd BufNewFile,BufRead *.go setlocal filetype=go sw=2 expandtab ts=2
