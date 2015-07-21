@@ -20,6 +20,10 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 " エスケープ
 imap <C-@> <Esc>
 
+" 背景色
+set background=dark
+
+
 " バックグラウンドが黒の時の色設定
 highlight StatusLine ctermfg=gray ctermbg=darkgray
 highlight CursorLine ctermfg=none ctermbg=darkgray cterm=none
