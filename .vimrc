@@ -55,39 +55,28 @@ set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,
 set cursorline
 highlight CursorLine ctermbg=Blue
 
+" ファイルタイプ別プラグイン/インデントを有効化する
+filetype plugin indent on
+
 " vim起動時のみruntimepathにneobundle.vimを追加
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+
 " neobundle.vimの初期化
 call neobundle#begin(expand('~/.vim/bundle'))
+
 NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
-
-" 読み込むプラグインを記載
-" NeoBundle 'プラグイン名'
-
-" 読み込んだプラグインも含め、ファイルタイプの検出、
-" ファイルタイプ別プラグイン/インデントを有効化する
-filetype plugin indent on
-
-" NeoBundleLazyコマンドを使用し、
-" :Vinariseコマンド実行時に読み込む
 NeoBundleLazy 'Shougo/vinarise', {
             \ 'autoload': {
             \     'commands': 'Vinarise',
             \ }}
-
-" NeoBundleコマンドを使用し、
-" :Vinariseコマンド実行時に読み込む
 NeoBundle 'Shougo/vinarise', {
              \ 'lazy': 1,
              \ 'autoload': {
              \     'commands': 'Vinarise',
              \ }}
-
-" Unite
 NeoBundle 'Shougo/unite.vim', {'lazy': 1,
              \ 'depends': [
              \             'Shougo/vimshell',
@@ -101,33 +90,10 @@ NeoBundle 'Shougo/unite.vim', {'lazy': 1,
              \                    'UniteWithInput'],
              \ }}
 
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable =1
-let g:unite_source_file_mru_limit = 200
-nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> <C-x><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-nnoremap <silent> ,ud :<C-u>Unite file<CR>
-
-augroup vimrcEx
-  autocmd!
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line('$') |
-    \   exe "normal! g`\"" |
-    \ endif
-augroup END
-
-
-" Neocomplete
 NeoBundle 'Shougo/neocomplete', {
             \ 'autoload': {
                         \     'insert': 1,
             \ }}
-let g:neocomplete#enable_at_startup = 1
-
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimfiler.vim.git'
@@ -155,6 +121,33 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'vim-scripts/vim-javascript'
 NeoBundle 'taichouchou2/html5.vim'
+
+call neobundle#end()
+
+
+
+
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <C-x><C-f> :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <silent> ,ud :<C-u>Unite file<CR>
+
+augroup vimrcEx
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line('$') |
+    \   exe "normal! g`\"" |
+    \ endif
+augroup END
+
+
+let g:neocomplete#enable_at_startup = 1
 
 " Coffee Script
 autocmd BufRead,BufNewFile,BufReadPre *.coffee    set filetype=coffee
@@ -223,7 +216,6 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
 
 " Perl file
 autocmd BufNewFile,BufRead *.psgi   set filetype=perl
